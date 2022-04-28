@@ -1,13 +1,20 @@
 import { RouterLocation } from '@vaadin/router';
 import { makeAutoObservable } from 'mobx';
+import {UiStore} from "Frontend/stores/uiStore";
+import {WmsStore} from "Frontend/stores/wms-store";
+
 
 export class AppStore {
-  applicationName = 'Vaadin Todo';
+  applicationName = 'WMS Scanner';
 
   // The location, relative to the base path, e.g. "hello" when viewing "/hello"
   location = '';
 
   currentViewTitle = '';
+  uiStore =new UiStore()
+  wmsStore=new WmsStore();
+
+
 
   constructor() {
     makeAutoObservable(this);
@@ -30,3 +37,6 @@ export class AppStore {
   }
 }
 export const appStore = new AppStore();
+export const uiStore=appStore.uiStore;
+export const wmsStore=appStore.wmsStore;
+

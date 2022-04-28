@@ -5,7 +5,7 @@
 [slot='drawer'] nav a {
   text-decoration: none !important; /* !important is only needed for 23 alpha 3 */
   transition: color 140ms;
-  color: var(--lumo-secondary-text-color); /* This is only needed for 23 alpha 3 */
+  color:red; /* This is only needed for 23 alpha 3 */
 }
 
 [slot='drawer'] nav a .la {
@@ -24,7 +24,7 @@
 }
 
 [slot='drawer'] nav a[highlight] {
-  color: var(--lumo-primary-text-color);
+  color: red;
 }
 
 [slot='drawer'] nav a[highlight]::before {
@@ -42,22 +42,25 @@
   margin-right: var(--lumo-space-s);
   padding: var(--lumo-space-s);
   position: relative;
-  color: var(--lumo-secondary-text-color);
+  color: red;
 }
 
 .menu-item-text {
   font-weight: 500;
   font-size: var(--lumo-font-size-s);
+  color: red;
 }
 
 .menu-item-icon {
   margin-inline-end: var(--lumo-space-s);
   font-size: var(--lumo-font-size-l);
+  color: red;
 }
 
 .view-title {
   margin: 0;
   font-size: var(--lumo-font-size-l);
+  color: red;
 }
 
 .view-header {
@@ -72,7 +75,7 @@
 }
 
 .view-toggle {
-  color: var(--lumo-secondary-text-color);
+  color: red;
 }
 
 .app-name {
@@ -83,6 +86,7 @@
   padding-left: var(--lumo-space-m);
   padding-right: var(--lumo-space-m);
   font-size: var(--lumo-font-size-m);
+  color: red;
 }
 
 .drawer-section {
@@ -98,6 +102,7 @@
   border-color: var(--lumo-contrast-10pct);
   flex-grow: 1;
   overflow: auto;
+  color: red;
 }
 
 .navigation-list {

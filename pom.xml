@@ -2,15 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!-- Project from https://start.vaadin.com/project/399e3884-277e-4a60-a30a-f081dc0231a9 -->
-    <groupId>com.example.application</groupId>
-    <artifactId>vaadintodo</artifactId>
-    <name>Vaadin Todo</name>
+    <groupId>com.essers.wmsscanner</groupId>
+    <artifactId>wmsscanner</artifactId>
+    <name>WMS Scanner</name>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <hilla.version>1.0.6</hilla.version>
     </properties>
 
@@ -22,20 +21,25 @@
 
     <repositories>
         <!-- The order of definitions matters. Explicitly defining central here to make sure it has the highest priority. -->
-
         <!-- Main Maven repository -->
         <repository>
-            <id>central</id>
-            <url>https://repo.maven.apache.org/maven2</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+            <id>central</id>
+            <name>libs-release</name>
+            <url>http://repo.essers.com:8080/artifactory/libs-release</url>
+        </repository>
+        <repository>
+            <snapshots />
+            <id>snapshots</id>
+            <name>libs-snapshot</name>
+            <url>http://repo.essers.com:8080/artifactory/libs-snapshot</url>
         </repository>
         <repository>
             <id>vaadin-prereleases</id>
             <url>
-                https://maven.vaadin.com/vaadin-prereleases/
-            </url>
+                https://maven.vaadin.com/vaadin-prereleases/</url>
         </repository>
         <!-- Repository used by many Vaadin add-ons -->
         <repository>
@@ -45,8 +49,21 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>ossrh</id>
+            <name>Central Repository OSSRH</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <repository>
+            <id>maven_central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>dbr</id>
+            <url>https://download2.dynamsoft.com/maven/dbr/jar</url>
+        </repository>
     </repositories>
-
     <pluginRepositories>
         <!-- The order of definitions matters. Explicitly defining central here to make sure it has the highest priority. -->
         <pluginRepository>
@@ -59,11 +76,9 @@
         <pluginRepository>
             <id>vaadin-prereleases</id>
             <url>
-                https://maven.vaadin.com/vaadin-prereleases/
-            </url>
+                https://maven.vaadin.com/vaadin-prereleases/</url>
         </pluginRepository>
     </pluginRepositories>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -90,7 +105,11 @@
             <artifactId>exampledata</artifactId>
             <version>4.1.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -110,6 +129,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-jose</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-resource-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
