@@ -34,6 +34,7 @@ public class Movement implements Serializable {
     private String location;
     private String state;
     private String handleduser;
+    private String palleteNummer;
 
     @ManyToOne
     @JoinColumn(name = "picking_list_ID")
@@ -57,6 +58,14 @@ public class Movement implements Serializable {
 
     public void setHandleduser(String handled_user) {
         this.handleduser = handled_user;
+    }
+
+    public String getPalleteNummer() {
+        return palleteNummer;
+    }
+
+    public void setPalleteNummer(String palleteNummer) {
+        this.palleteNummer = palleteNummer;
     }
 
     public String getState() {

@@ -8,6 +8,7 @@ import dev.hilla.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.security.PermitAll;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Endpoint
@@ -21,7 +22,7 @@ public class MovementEndpoint {
         return movementRepo.getMovementsByPickinglist(pickinglist);
     }
     @Nonnull
-    Movement getById(Long id){
+    public Movement getById(Long id){
         return movementRepo.getById(id);
     }
 
@@ -29,4 +30,19 @@ public class MovementEndpoint {
         movementRepo.save(movement);
     }
 
+    public void updateUser(String state, String username, Movement mov){
+        Movement movement=movementRepo.getById(mov.getMovementId());
+        movement.setState(state);
+        movement.setProgressuser(username);
+        movementRepo.save(movement);
+    }
+
+    public void updateState(String state, String username, Movement mov){
+        Movement movement=movementRepo.getById(mov.getMovementId());
+        movement.setState(state);
+        movement.setProgresstimestamp(LocalDateTime.now());
+        movement.setHandleduser(username);
+        movement.setProgressuser("");
+        movementRepo.save(movement);
+    }
 }

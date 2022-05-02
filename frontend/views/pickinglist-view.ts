@@ -58,6 +58,7 @@ export class PickinglistView extends View implements BeforeEnterObserver {
             'h-full'
         );
     }
+
     firstSelectionEvent = true;
     handleGridSelection(e: CustomEvent) {
         if (this.firstSelectionEvent) {
@@ -65,7 +66,8 @@ export class PickinglistView extends View implements BeforeEnterObserver {
             return;
         }
         this.selectedPickinglist=e.detail.value;
-        Router.go('movements/'+this.selectedPickinglist?.id)
+       // Router.go('movements/'+this.selectedPickinglist?.id)
+        Router.go('scanner/'+this.selectedPickinglist?.id)
         console.log("55555555555555555555555555555555555555")
         console.log("\"+++++++++++++++++++++++++\ this id", this.id);
         this.pickinglists.forEach(value => console.log(value))

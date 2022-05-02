@@ -86,6 +86,7 @@ public class DataGenerator {
                 plist.setCompany(companies.get( new Random().nextInt(companyRepo.findAll().size())));
                 plist.setSite(sites.get(new Random().nextInt(siteRepo.findAll().size())));
                 plist.setWarehouse(warehouses.get(new Random().nextInt(warehouseRepo.findAll().size())));
+                plist.setLocation("RETARUS123456789");
                 return plist;
             }).collect(Collectors.toList());
 
@@ -128,6 +129,7 @@ public class DataGenerator {
                     movement.setUom(pl.getUom());
                     movement.setCompany(pl.getCompany().getName());
                     movement.setProductId(p.getProduct_ID());
+                    movement.setPalleteNummer("03600029145");
                     movement.setState("pick");
                     movements.add(movement);
                 }

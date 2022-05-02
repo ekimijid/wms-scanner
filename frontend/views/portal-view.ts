@@ -40,4 +40,6 @@ export class PortalView extends  View {
         Router.go("company")
 
     }
+
+
 }

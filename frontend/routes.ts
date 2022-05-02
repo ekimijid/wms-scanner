@@ -5,6 +5,7 @@ import 'Frontend/views/portal-view'
 import 'Frontend/views/login-view'
 import 'views/company-view'
 import 'views/movements-view'
+import 'views/scanner-view'
 import {uiStore} from "Frontend/stores/app-store";
 import {autorun} from "mobx";
 
@@ -40,6 +41,12 @@ export const views: ViewRoute[] = [
     icon: '',
     title: '',
 
+  },
+  {
+    path: 'scanner/:id',
+    component: 'scanner-view',
+    icon: '',
+    title: '',
   },
 ];
 const authGuard = async (context: Context, commands: Commands) => {

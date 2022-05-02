@@ -5,7 +5,7 @@ import {View} from "Frontend/views/view";
 import { Router } from '@vaadin/router';
 import {CompanyEndpoint, PickinlistEndpoint} from "Frontend/generated/endpoints";
 import Pickinglist from "Frontend/generated/com/essers/wmsscanner/entity/Pickinglist";
-import { Notification } from '@vaadin/notification';
+import {Notification, NotificationRenderer} from '@vaadin/notification';
 import {wmsStore} from "Frontend/stores/app-store";
 @customElement('company-view')
 export class CompanyView extends View {
@@ -37,6 +37,10 @@ export class CompanyView extends View {
         if(this.pickinglists.length!=0){
             Router.go("pickinglist/" + e.detail.value)
         }
-        else Notification.show("NO PICKININGLIST")
+        else Notification.show("NO PICKININGLIST", {
+            position:'middle', theme:'error'
+        })
     }
+
+
 }

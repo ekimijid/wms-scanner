@@ -9,7 +9,7 @@ import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { router } from '../index';
 import { views } from '../routes';
-import { appStore, uiStore } from '../stores/app-store';
+import {appStore, uiStore, wmsStore} from '../stores/app-store';
 import { Layout } from './view';
 
 
@@ -27,7 +27,11 @@ export class MainLayout extends Layout {
         <header class="view-header" slot="navbar">
           <vaadin-drawer-toggle aria-label="Menu toggle" class="view-toggle" theme="contrast"></vaadin-drawer-toggle>
           <h1 class="view-title">${appStore.currentViewTitle}</h1>
-          <a href="/logout" class="ms-auto" ?hidden=${uiStore.offline}> Log out </a>
+          <vaadin-avatar></vaadin-avatar>
+          <vaadin-avatar .name="${`${wmsStore.username}`}">
+          </vaadin-avatar>
+          <a href="/logout"  class="ms-auto"  ?hidden=${uiStore.offline} > Log out </a>
+         
         </header>
         <section class="drawer-section" slot="drawer">
           <h1 class="view-title">${appStore.applicationName}</h1>

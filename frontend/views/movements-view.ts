@@ -11,46 +11,43 @@ import { View } from './view';
 import {html} from "lit";
 import Movement from "Frontend/generated/com/essers/wmsscanner/entity/Movement";
 import {MovementEndpoint, PickinlistEndpoint} from "Frontend/generated/endpoints";
+import { Notification } from '@vaadin/notification';
+import {Binder, field} from "@hilla/form";
+import MovementModel from "Frontend/generated/com/essers/wmsscanner/entity/MovementModel";
+import PickinglistModel from "Frontend/generated/com/essers/wmsscanner/entity/PickinglistModel";
+import { repeat } from 'lit/directives/repeat.js';
 
 
 // @ts-ignore
 @customElement('movements-view')
 export class MovementsView extends View implements BeforeEnterObserver {
-
     // @ts-ignore
     @state() id: number | undefined;
     @state() pickinglist: Pickinglist | undefined;
     @state() selectedMovement: Movement | undefined;
     movements: Movement[] = []
 
+    render() {
+        Movements:
+            return html`
+                <ul>
+                    ${this.movements.map(movementBinder => html`
+                        <div>
+                           ${movementBinder.company}
+                        </div>
+                      `)}
+                </ul>
+            `;
+    }
+
     async onBeforeEnter(location: RouterLocation, commands: PreventAndRedirectCommands) {
         this.id = parseInt(location.params.id as string);
         console.log("from movements ::::", this.id)
         this.pickinglist=await PickinlistEndpoint.getById(this.id)
         this.movements=await MovementEndpoint.getByPickinglist(this.pickinglist);
-        console.log("/*/*/*/*/*/*/*/", this.movements)
+        console.log("/*/*/*/*/*/*/*/", this.pickinglist.movements)
 
     }
-
-    render() {
-        return html`
-            <div class="content flex gap-m h-full">
-                <vaadin-grid class="grid h-full" .items=${this.movements}
-                             .selectedItems=${this.selectedMovement}
-                             @active-item-changed=${this.handleGridSelection}>
-                    <vaadin-grid-column path="productId" header="Product" auto-width></vaadin-grid-column>
-                    <vaadin-grid-column path="state" auto-width></vaadin-grid-column>
-                    <vaadin-grid-column path="type"  auto-width></vaadin-grid-column>
-                    <vaadin-grid-column path="location" auto-width></vaadin-grid-column>
-                    <vaadin-grid-column path="progressuser" auto-width></vaadin-grid-column>
-                    <vaadin-grid-column path="handleduser" auto-width></vaadin-grid-column>
-                    <vaadin-grid-column path="progresstimestamp" header="Progress time" auto-width></vaadin-grid-column>
-                    
-                </vaadin-grid>
-            </div>
-        `;
-    }
-
     connectedCallback() {
         super.connectedCallback();
         this.classList.add(
@@ -72,6 +69,13 @@ export class MovementsView extends View implements BeforeEnterObserver {
             return;
         }
         this.selectedMovement=e.detail.value;
-        Router.go('scanner/' + this.selectedMovement?.movementId)
+        if(this.selectedMovement?.state==="picked"){
+            Notification.show("Barcode has already been scanned!")
+        }
+        else{
+            Router.go('scanner/' + this.selectedMovement?.movementId)
+        }
+
     }
 }
+
