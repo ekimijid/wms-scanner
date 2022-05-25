@@ -1,4 +1,4 @@
-package com.essers.wmsscanner.repo;
+package com.essers.wmsscanner.repository;
 
 import com.essers.wmsscanner.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

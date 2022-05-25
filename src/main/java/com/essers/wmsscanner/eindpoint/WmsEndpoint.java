@@ -4,10 +4,10 @@ import com.essers.wmsscanner.entity.Company;
 import com.essers.wmsscanner.entity.Movement;
 import com.essers.wmsscanner.entity.Pickinglist;
 import com.essers.wmsscanner.entity.Product;
-import com.essers.wmsscanner.repo.CompanyRepo;
-import com.essers.wmsscanner.repo.MovementRepo;
-import com.essers.wmsscanner.repo.PickinglistRepo;
-import com.essers.wmsscanner.repo.ProductRepo;
+import com.essers.wmsscanner.repository.CompanyRepository;
+import com.essers.wmsscanner.repository.MovementRepository;
+import com.essers.wmsscanner.repository.PickinglistRepository;
+import com.essers.wmsscanner.repository.ProductRepository;
 import dev.hilla.Endpoint;
 import dev.hilla.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +20,21 @@ import java.util.List;
 @PermitAll
 public class WmsEndpoint {
     @Autowired
-    CompanyRepo companyRepo;
+    CompanyRepository companyRepository;
 
     @Autowired
-    PickinglistRepo pickinglistRepo;
+    PickinglistRepository pickinglistRepository;
 
     @Autowired
-    MovementRepo movementRepo;
+    MovementRepository movementRepository;
     @Autowired
-    ProductRepo productRepo;
+    ProductRepository productRepository;
 
     public Wmsdata wmsData(){
         Wmsdata wmsdata=new Wmsdata();
-        wmsdata.companies=companyRepo.findAll();
-        wmsdata.pickinglists=pickinglistRepo.findAll();
-        wmsdata.movements=movementRepo.findAll();
+        wmsdata.companies= companyRepository.findAll();
+        wmsdata.pickinglists= pickinglistRepository.findAll();
+        wmsdata.movements= movementRepository.findAll();
         return wmsdata;
     }
 
@@ -52,6 +52,4 @@ public class WmsEndpoint {
         @Nonnull
         public List<@Nonnull Product> products = Collections.emptyList();
     }
-
-
 }

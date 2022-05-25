@@ -9,8 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class UserEndpoint {
     @AnonymousAllowed
     public String checkUser() {
-        Authentication auth =
-                SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return auth == null ? null : auth.getName();
     }
 }

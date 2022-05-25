@@ -1,7 +1,7 @@
 package com.essers.wmsscanner.eindpoint;
 
 import com.essers.wmsscanner.entity.Company;
-import com.essers.wmsscanner.repo.CompanyRepo;
+import com.essers.wmsscanner.repository.CompanyRepository;
 import dev.hilla.Endpoint;
 import dev.hilla.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +13,14 @@ import java.util.List;
 @PermitAll
 public class CompanyEndpoint {
     @Autowired
-    private CompanyRepo companyRepo;
+    private CompanyRepository companyRepository;
 
     @Nonnull
     public List<@Nonnull Company> getAll(){
-        return companyRepo.findAll();
+        return companyRepository.findAll();
     }
 
     public @Nonnull Company getByID(Long id){
-        return companyRepo.getById(id);
+        return companyRepository.getById(id);
     }
 }

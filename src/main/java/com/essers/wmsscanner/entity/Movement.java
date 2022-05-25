@@ -1,8 +1,6 @@
 package com.essers.wmsscanner.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,29 +9,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-//@Transactional
 public class Movement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long movementId;
-    private String company;
-    private String site;
-    private String warehouse;
-    private Movementtype type;
+    private String wmsCompany;
+    private String wmsSite;
+    private String wmsWarehouse;
+    private Movementtype movementType;
     private String priority;
     private String productId;
     private String supplierId;
     private Integer quantity;
     private String uom;
-    private String locationfrom;
-    private String locationto;
-    private LocalDateTime progresstimestamp;
-    private String progressuser;
+    private String locationFrom;
+    private String locationTo;
+    private LocalDateTime inProgressTimestamp;
+    private String inProgressUser;
     private String location;
     private String state;
-    private String handleduser;
+    private String handledUser;
     private String palleteNummer;
 
     @ManyToOne
@@ -42,78 +37,46 @@ public class Movement implements Serializable {
     private Pickinglist pickinglist;
 
     @ManyToMany
-    private List<Stock> stock=new ArrayList<>();
+    private List<Stock> stock = new ArrayList<>();
 
     public Long getMovementId() {
         return movementId;
     }
 
-    public void setMovementId(Long movement_ID) {
-        this.movementId = movement_ID;
+    public void setMovementId(Long movementId) {
+        this.movementId = movementId;
     }
 
-    public String getHandleduser() {
-        return handleduser;
+    public String getWmsCompany() {
+        return wmsCompany;
     }
 
-    public void setHandleduser(String handled_user) {
-        this.handleduser = handled_user;
+    public void setWmsCompany(String wmsCompany) {
+        this.wmsCompany = wmsCompany;
     }
 
-    public String getPalleteNummer() {
-        return palleteNummer;
+    public String getWmsSite() {
+        return wmsSite;
     }
 
-    public void setPalleteNummer(String palleteNummer) {
-        this.palleteNummer = palleteNummer;
+    public void setWmsSite(String wmsSite) {
+        this.wmsSite = wmsSite;
     }
 
-    public String getState() {
-        return state;
+    public String getWmsWarehouse() {
+        return wmsWarehouse;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setWmsWarehouse(String wmsWarehouse) {
+        this.wmsWarehouse = wmsWarehouse;
     }
 
-    public String getLocation() {
-        return location;
+    public Movementtype getMovementType() {
+        return movementType;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String wms_company) {
-        this.company = wms_company;
-    }
-
-    public String getSite() {
-        return site;
-    }
-
-    public void setSite(String wms_site) {
-        this.site = wms_site;
-    }
-
-    public String getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(String wms_warehouse) {
-        this.warehouse = wms_warehouse;
-    }
-
-    public Movementtype getType() {
-        return type;
-    }
-
-    public void setType(Movementtype movement_type) {
-        this.type = movement_type;
+    public void setMovementType(Movementtype movementType) {
+        this.movementType = movementType;
     }
 
     public String getPriority() {
@@ -128,16 +91,16 @@ public class Movement implements Serializable {
         return productId;
     }
 
-    public void setProductId(String product_ID) {
-        this.productId = product_ID;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(String supplier_ID) {
-        this.supplierId = supplier_ID;
+    public void setSupplierId(String supplierId) {
+        this.supplierId = supplierId;
     }
 
     public Integer getQuantity() {
@@ -156,36 +119,68 @@ public class Movement implements Serializable {
         this.uom = uom;
     }
 
-    public String getLocationfrom() {
-        return locationfrom;
+    public String getLocationFrom() {
+        return locationFrom;
     }
 
-    public void setLocationfrom(String location_from) {
-        this.locationfrom = location_from;
+    public void setLocationFrom(String locationFrom) {
+        this.locationFrom = locationFrom;
     }
 
-    public String getLocationto() {
-        return locationto;
+    public String getLocationTo() {
+        return locationTo;
     }
 
-    public void setLocationto(String location_to) {
-        this.locationto = location_to;
+    public void setLocationTo(String locationTo) {
+        this.locationTo = locationTo;
     }
 
-    public LocalDateTime getProgresstimestamp() {
-        return progresstimestamp;
+    public LocalDateTime getInProgressTimestamp() {
+        return inProgressTimestamp;
     }
 
-    public void setProgresstimestamp(LocalDateTime in_progress_timestamp) {
-        this.progresstimestamp = in_progress_timestamp;
+    public void setInProgressTimestamp(LocalDateTime inProgressTimestamp) {
+        this.inProgressTimestamp = inProgressTimestamp;
     }
 
-    public String getProgressuser() {
-        return progressuser;
+    public String getInProgressUser() {
+        return inProgressUser;
     }
 
-    public void setProgressuser(String in_progress_user) {
-        this.progressuser = in_progress_user;
+    public void setInProgressUser(String inProgressUser) {
+        this.inProgressUser = inProgressUser;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getHandledUser() {
+        return handledUser;
+    }
+
+    public void setHandledUser(String handledUser) {
+        this.handledUser = handledUser;
+    }
+
+    public String getPalleteNummer() {
+        return palleteNummer;
+    }
+
+    public void setPalleteNummer(String palleteNummer) {
+        this.palleteNummer = palleteNummer;
     }
 
     public Pickinglist getPickinglist() {
@@ -202,16 +197,5 @@ public class Movement implements Serializable {
 
     public void setStock(List<Stock> stock) {
         this.stock = stock;
-    }
-
-    public int getStock(String product_ID){
-        int stocks=0;
-        for (Stock s: getStock()
-             ) {
-                    if(s.getProductID().equals(product_ID) && s.getLocation().equals(getLocation())){
-                        stocks=s.getQuantity();
-            }
-        }
-        return stocks;
     }
 }

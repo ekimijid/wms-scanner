@@ -1,4 +1,4 @@
-package com.essers.wmsscanner.repo;
+package com.essers.wmsscanner.repository;
 
 import com.essers.wmsscanner.entity.Movement;
 import com.essers.wmsscanner.entity.Pickinglist;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MovementRepo extends JpaRepository<Movement, Long> {
+public interface MovementRepository extends JpaRepository<Movement, Long> {
     List<Movement> getMovementsByPickinglist(Pickinglist pickinglist);
+    Movement findMovementByMovementId(Long id);
 }

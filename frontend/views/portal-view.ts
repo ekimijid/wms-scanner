@@ -6,15 +6,10 @@ import '@vaadin/text-field';
 import '@vaadin/button';
 import '@vaadin/grid';
 import '@vaadin/grid/vaadin-grid-column';
-import {
-    BeforeEnterObserver,
-    PreventAndRedirectCommands,
-    Router,
-    RouterLocation
-} from '@vaadin/router';
+import {Router} from '@vaadin/router';
 
 @customElement('portal-view')
-export class PortalView extends  View {
+export class PortalView extends View {
 
     render() {
         return html`
@@ -30,13 +25,16 @@ export class PortalView extends  View {
             </div>
         `;
     }
-    fullpallet(){
+
+    fullpallet() {
         Router.go("company")
     }
-    partpallet(){
+
+    partpallet() {
         Router.go("company")
     }
-    interrack(){
+
+    interrack() {
         Router.go("company")
 
     }

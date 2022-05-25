@@ -2,11 +2,10 @@ package com.essers.wmsscanner.eindpoint;
 
 import com.essers.wmsscanner.entity.Movement;
 import com.essers.wmsscanner.entity.Pickinglist;
-import com.essers.wmsscanner.repo.MovementRepo;
+import com.essers.wmsscanner.repository.MovementRepository;
 import dev.hilla.Endpoint;
 import dev.hilla.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.annotation.security.PermitAll;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,34 +14,35 @@ import java.util.List;
 @PermitAll
 public class MovementEndpoint {
     @Autowired
-    private MovementRepo movementRepo;
+    private MovementRepository movementRepository;
 
     @Nonnull
-    public List<@Nonnull Movement> getByPickinglist(Pickinglist pickinglist){
-        return movementRepo.getMovementsByPickinglist(pickinglist);
+    public List<@Nonnull Movement> getByPickinglist(Pickinglist pickinglist) {
+        return movementRepository.getMovementsByPickinglist(pickinglist);
     }
+
     @Nonnull
-    public Movement getById(Long id){
-        return movementRepo.getById(id);
+    public Movement getById(Long id) {
+        return movementRepository.getById(id);
     }
 
-    public void save(Movement movement){
-        movementRepo.save(movement);
+    public void save(Movement movement) {
+        movementRepository.save(movement);
     }
 
-    public void updateUser(String state, String username, Movement mov){
-        Movement movement=movementRepo.getById(mov.getMovementId());
+    public void updateUser(String state, String username, Movement mov) {
+        Movement movement = movementRepository.getById(mov.getMovementId());
         movement.setState(state);
-        movement.setProgressuser(username);
-        movementRepo.save(movement);
+        movement.setInProgressUser(username);
+        movementRepository.save(movement);
     }
 
-    public void updateState(String state, String username, Movement mov){
-        Movement movement=movementRepo.getById(mov.getMovementId());
+    public void updateState(String state, String username, Movement mov) {
+        Movement movement = movementRepository.getById(mov.getMovementId());
         movement.setState(state);
-        movement.setProgresstimestamp(LocalDateTime.now());
-        movement.setHandleduser(username);
-        movement.setProgressuser("");
-        movementRepo.save(movement);
+        movement.setInProgressTimestamp(LocalDateTime.now());
+        movement.setHandledUser(username);
+        movement.setInProgressUser("");
+        movementRepository.save(movement);
     }
 }

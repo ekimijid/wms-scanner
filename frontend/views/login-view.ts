@@ -6,7 +6,6 @@ import {uiStore} from "Frontend/stores/app-store";
 import '@vaadin/login/vaadin-login-form.js';
 
 
-
 @customElement('login-view')
 export class LoginView extends View {
     @state()
@@ -20,17 +19,17 @@ export class LoginView extends View {
 
     render() {
         return html`
-      <h1>WMS Scanner</h1>
-      <vaadin-login-form
-        no-forgot-password
-        @login=${this.login}
-        .error=${this.error}
-        ?disabled=${uiStore.offline}>
-      </vaadin-login-form>
-      ${uiStore.offline
-            ? html` <b>You are offline. Login is only available while online.</b> `
-            : nothing}
-    `;
+            <h1>WMS Scanner</h1>
+            <vaadin-login-form
+                    no-forgot-password
+                    @login=${this.login}
+                    .error=${this.error}
+                    ?disabled=${uiStore.offline}>
+            </vaadin-login-form>
+            ${uiStore.offline
+                    ? html` <b>You are offline. Login is only available while online.</b> `
+                    : nothing}
+        `;
     }
 
     async login(e: LoginFormLoginEvent) {

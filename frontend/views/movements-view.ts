@@ -1,4 +1,3 @@
-import '@vaadin/notification';
 import '@vaadin/text-field';
 import '@vaadin/button';
 import '@vaadin/grid';
@@ -7,15 +6,11 @@ import {BeforeEnterObserver, PreventAndRedirectCommands, Router, RouterLocation}
 
 import Pickinglist from "Frontend/generated/com/essers/wmsscanner/entity/Pickinglist";
 import {customElement, state} from "lit/decorators.js";
-import { View } from './view';
+import {View} from './view';
 import {html} from "lit";
 import Movement from "Frontend/generated/com/essers/wmsscanner/entity/Movement";
 import {MovementEndpoint, PickinlistEndpoint} from "Frontend/generated/endpoints";
-import { Notification } from '@vaadin/notification';
-import {Binder, field} from "@hilla/form";
-import MovementModel from "Frontend/generated/com/essers/wmsscanner/entity/MovementModel";
-import PickinglistModel from "Frontend/generated/com/essers/wmsscanner/entity/PickinglistModel";
-import { repeat } from 'lit/directives/repeat.js';
+import {Notification} from '@vaadin/notification';
 
 
 // @ts-ignore
@@ -28,26 +23,27 @@ export class MovementsView extends View implements BeforeEnterObserver {
     movements: Movement[] = []
 
     render() {
-        Movements:
-            return html`
-                <ul>
-                    ${this.movements.map(movementBinder => html`
-                        <div>
-                           ${movementBinder.company}
-                        </div>
-                      `)}
-                </ul>
-            `;
+        return html`
+            <label> Movements</label>
+            <ul>
+                ${this.movements.map(movementBinder => html`
+                    <div>
+                        ${movementBinder.wmsCompany}
+                    </div>
+                `)}
+            </ul>
+        `;
     }
 
     async onBeforeEnter(location: RouterLocation, commands: PreventAndRedirectCommands) {
         this.id = parseInt(location.params.id as string);
         console.log("from movements ::::", this.id)
-        this.pickinglist=await PickinlistEndpoint.getById(this.id)
-        this.movements=await MovementEndpoint.getByPickinglist(this.pickinglist);
+        this.pickinglist = await PickinlistEndpoint.getById(this.id)
+        this.movements = await MovementEndpoint.getByPickinglist(this.pickinglist);
         console.log("/*/*/*/*/*/*/*/", this.pickinglist.movements)
 
     }
+
     connectedCallback() {
         super.connectedCallback();
         this.classList.add(
@@ -68,11 +64,10 @@ export class MovementsView extends View implements BeforeEnterObserver {
             this.firstSelectionEvent = false;
             return;
         }
-        this.selectedMovement=e.detail.value;
-        if(this.selectedMovement?.state==="picked"){
+        this.selectedMovement = e.detail.value;
+        if (this.selectedMovement?.state === "picked") {
             Notification.show("Barcode has already been scanned!")
-        }
-        else{
+        } else {
             Router.go('scanner/' + this.selectedMovement?.movementId)
         }
 

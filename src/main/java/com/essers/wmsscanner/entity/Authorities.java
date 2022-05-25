@@ -1,14 +1,16 @@
 package com.essers.wmsscanner.entity;
 
+import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/*@Entity
-public class Authorities implements GrantedAuthority {
+@Entity
+public final class Authorities implements GrantedAuthority {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     String authority;
@@ -21,4 +23,4 @@ public class Authorities implements GrantedAuthority {
     public void setAuthority(String authority) {
         this.authority = authority;
     }
-}*/
+}

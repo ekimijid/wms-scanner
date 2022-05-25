@@ -6,6 +6,7 @@ import 'Frontend/views/login-view'
 import 'views/company-view'
 import 'views/movements-view'
 import 'views/scanner-view'
+import 'views/damage-view'
 import {uiStore} from "Frontend/stores/app-store";
 import {autorun} from "mobx";
 
@@ -45,6 +46,12 @@ export const views: ViewRoute[] = [
   {
     path: 'scanner/:id',
     component: 'scanner-view',
+    icon: '',
+    title: '',
+  },
+  {
+    path: 'damage/:id',
+    component: 'damage-view',
     icon: '',
     title: '',
   },
